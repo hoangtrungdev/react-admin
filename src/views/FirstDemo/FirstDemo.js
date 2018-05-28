@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {NavLink} from 'react-router-dom';
 import dataDemo from './_demo';
 
 import {
@@ -9,7 +10,7 @@ import {
 } from 'reactstrap';
 
 
-class Dashboard extends Component {
+class FirstDemo extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -33,8 +34,12 @@ class Dashboard extends Component {
         <tr key={index}>
           <td className="text-center">{index + 1}</td>
           <td>{item.title?'Title - ':''}{item.name}</td>
-          <td>{item.url}</td>
-          <td>{item.icon}</td>
+          <td>
+            { item.url ? <span>{item.url} -- <NavLink to={item.url}>Go to page</NavLink></span> : ''}
+            </td>
+          <td>
+            { item.icon ? <span><i className={item.icon}></i> --- {item.icon}</span> : ''}
+          </td>
           <td className="text-center">
             <Button color="primary" size="sm"  onClick={this.toggleModalEdit}><i className="	icon-wrench"></i></Button>
             <Button color="danger" size="sm"><i className="	icon-trash"></i></Button>
@@ -82,4 +87,4 @@ class Dashboard extends Component {
     )
   }
 }
-export default Dashboard;
+export default FirstDemo;

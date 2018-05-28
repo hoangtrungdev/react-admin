@@ -1,0 +1,6 @@
+{
+  "name": "SlickDemo",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./SlickDemo.js"
+}
