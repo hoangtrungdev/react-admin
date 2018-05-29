@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Slider from "react-slick";
-
+import '../../../scss/components/SlickDemo.scss'
 
 class SimpleSlider extends Component {
   render() {
@@ -13,22 +13,22 @@ class SimpleSlider extends Component {
     };
     return (
       <Slider {...settings}>
-        <div>
+        <div className="divSlider">
           <h3>1</h3>
         </div>
-        <div>
+        <div className="divSlider">
           <h3>2</h3>
         </div>
-        <div>
+        <div className="divSlider">
           <h3>3</h3>
         </div>
-        <div>
+        <div className="divSlider">
           <h3>4</h3>
         </div>
-        <div>
+        <div className="divSlider">
           <h3>5</h3>
         </div>
-        <div>
+        <div className="divSlider">
           <h3>6</h3>
         </div>
       </Slider>

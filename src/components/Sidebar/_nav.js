@@ -6,7 +6,16 @@ export default {
       icon: 'icon-speedometer',
       badge: {
         variant: 'info',
-        text: 'NEW'
+        text: 'Demo'
+      }
+    },
+    {
+      name: 'Slick Demo',
+      url: '/slick-demo',
+      icon: 'icon-puzzle',
+      badge: {
+        variant: 'info',
+        text: 'Slider'
       }
     }
   ]
