@@ -17,6 +17,15 @@ export default {
         variant: 'info',
         text: 'Slider'
       }
+    },
+    {
+      name: 'Gallery Demo',
+      url: '/gallery-demo',
+      icon: 'icon-puzzle',
+      badge: {
+        variant: 'info',
+        text: 'image'
+      }
     }
   ]
 };

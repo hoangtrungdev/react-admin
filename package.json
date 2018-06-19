@@ -39,6 +39,8 @@
     "react": "16.2.0",
     "react-chartjs-2": "2.7.0",
     "react-dom": "16.2.0",
+    "react-images": "^0.5.17",
+    "react-photo-gallery": "^6.0.28",
     "react-router-dom": "4.2.2",
     "react-slick": "^0.23.1",
     "react-transition-group": "2.2.1",

@@ -26,6 +26,7 @@ const routes = {
   '/dashboard': 'Dashboard',
   '/first-demo': 'FirstDemo',
   '/slick-demo': 'SlickDemo',
+  '/gallery-demo': 'GalleryDemo',
   '/icons': 'Icons',
   '/icons/flags': 'Flags',
   '/icons/font-awesome': 'Font Awesome',

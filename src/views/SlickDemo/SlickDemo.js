@@ -3,25 +3,18 @@ import Slider from "react-slick";
 import './SlickDemo.scss';
 import {
   Row,
-  Col,
   Button,
-  ButtonDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
+  Col,
   Card,
   CardHeader,
   CardFooter,
   CardBody,
-  Collapse,
   Form,
   FormGroup,
   FormText,
   Label,
   Input,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText
+  Table
 } from 'reactstrap';
 
 class SimpleSlider extends Component {
@@ -35,13 +28,14 @@ class SimpleSlider extends Component {
         slidesToShow: 2,
         slidesToScroll: 1
       },
+      arrayColor : ['blue' , 'white', 'red', 'green', 'yellow'],
       arraySlide : [
-        {text : '1' , style : {backgroundColor : 'blue', color : '#DDD' , borderColor : 'red'}},
-        {text : '2' , style : {backgroundColor : 'green', borderColor : 'yellow'}},
-        {text : '3' , style : {backgroundColor : 'blue', color : 'red' , borderColor : 'yellow'}},
-        {text : '4' , style : {backgroundColor : 'blue', color : 'red' , borderColor : 'yellow'}}
+        {text : '1' , style : {backgroundColor : 'blue', color : 'white' , borderColor : 'red'}},
+        {text : '2' , style : {backgroundColor : 'yellow', color : 'green' , borderColor : 'red'}},
+        {text : '3' , style : {backgroundColor : 'green', color : 'red' , borderColor : 'blue'}},
       ]
     };
+    this.addSlide = this.addSlide.bind(this);
   }
   loadSetting(objSetting){
     return Object.keys(objSetting).map(keyName =>this.renderSetting(keyName, objSetting[keyName]))
@@ -64,22 +58,42 @@ class SimpleSlider extends Component {
       </FormGroup>
     );
   };
-  loadList(arraySlide){
+  loadSlide(arraySlide){
     return arraySlide.map( (item, index) => this.renderSlide(item, index) );
   };
   renderSlide(item, index) {
-    console.log(item)
     return (
       <div className="divSlider" key={index}>
         <h3 style={item.style}>{item.text}</h3>
       </div>
     );
   };
+  loadListDetail(arraySlide) {
+    let listDetail = arraySlide.map( (item, index) =>
+      <tr key={index}>
+        <td className="text-center">{index + 1}</td>
+        <td>{item.text}</td>
+        <td>{JSON.stringify( item.style )}</td>
+      </tr>
+    );
+    return listDetail;
+  }
+  addSlide() {
+    let backgroundColor = this.randomColor();
+    let color = this.randomColor();
+    let borderColor = this.randomColor();
+    this.state.arraySlide.push({text :this.state.arraySlide.length + 1 , style : {backgroundColor : backgroundColor, color : color , borderColor : borderColor}});
+    this.setState({arraySlide: this.state.arraySlide});
+  }
+  randomColor(){
+    let arrayColor = this.state.arrayColor;
+    return arrayColor[Math.floor(Math.random() * arrayColor.length)];
+  }
   render() {
     return (
       <div className="animated fadeIn">
         <Slider {...this.state.settings} className="slider-content">
-          {this.loadList(this.state.arraySlide)}
+          {this.loadSlide(this.state.arraySlide)}
         </Slider>
         <Row >
           <Col xs="12" md="4">
@@ -100,10 +114,22 @@ class SimpleSlider extends Component {
                 <strong>Array Slide</strong>
               </CardHeader>
               <CardBody>
-                <Form  className="form-horizontal">
-                  {this.loadSetting(this.state.settings)}
-                </Form>
+                <Table bordered responsive size="sm" className="border-collapse">
+                  <thead>
+                  <tr>
+                    <th className="text-center">#</th>
+                    <th>Text</th>
+                    <th>style</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {this.loadListDetail(this.state.arraySlide)}
+                  </tbody>
+                </Table>
               </CardBody>
+              <CardFooter>
+                <Button type="submit" size="sm" color="primary" onClick={this.addSlide}><i className="fa fa-dot-circle-o"></i> Add slide</Button>
+              </CardFooter>
             </Card>
           </Col>
         </Row>
