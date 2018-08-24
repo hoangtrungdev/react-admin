@@ -1,0 +1,6 @@
+{
+  "name": "CoverLetter",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./CoverLetter.js"
+}

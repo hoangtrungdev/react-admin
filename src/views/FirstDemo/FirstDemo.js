@@ -25,51 +25,63 @@ class FirstDemo extends Component {
       modalEdit: !this.state.modalEdit
     });
   }
+  // render từng dòng
+  renderRow(item, index){
+    return (
+      <tr key={index}>
+        <td className="text-center">{index + 1}</td>
+        <td>{item.title?'Title - ':''}{item.name}</td>
+        <td>
+          { item.children ? this.loadListChildren(item.children) : ( item.url ? <span>{item.url} -- <NavLink to={item.url} target="_blank">Go to page</NavLink></span> : '') }
+        </td>
+        <td>
+          { item.icon ? <span><i className={item.icon}></i> --- {item.icon}</span> : ''}
+        </td>
+        <td className="text-center">
+          <Button color="primary" size="sm"  onClick={this.toggleModalEdit}><i className="	icon-wrench"></i></Button>
+          <Button color="danger" size="sm"><i className="	icon-trash"></i></Button>
+        </td>
+      </tr>
+    );
+  };
+
+  // load list data
+  loadList(items){
+    return items.map( (item, index) => this.renderRow(item, index) );
+  };
+
+  // load list data children
+  loadListChildren(dataChildren){
+    console.log(dataChildren)
+    return dataChildren.map( (item, index) => {
+      return (
+        <div key={index}>{item.url} -- <NavLink to={item.url} target="_blank">{item.name}</NavLink></div>
+      )
+    });
+  };
+
+
 
   render() {
-    
-    // render từng dòng
-    const renderRow = (item, index) => {
-      return (
-        <tr key={index}>
-          <td className="text-center">{index + 1}</td>
-          <td>{item.title?'Title - ':''}{item.name}</td>
-          <td>
-            { item.url ? <span>{item.url} -- <NavLink to={item.url}>Go to page</NavLink></span> : ''}
-            </td>
-          <td>
-            { item.icon ? <span><i className={item.icon}></i> --- {item.icon}</span> : ''}
-          </td>
-          <td className="text-center">
-            <Button color="primary" size="sm"  onClick={this.toggleModalEdit}><i className="	icon-wrench"></i></Button>
-            <Button color="danger" size="sm"><i className="	icon-trash"></i></Button>
-          </td>
-        </tr>
-      );
-    };
 
-    // load list data
-    const loadList = (items) => {
-      return items.map( (item, index) => renderRow(item, index) );
-    };
 
     return (
       <div className="animated fadeIn">
         <Row>
-            <Table bordered responsive size="sm" className="border-collapse">
-              <thead>
-              <tr>
-                <th className="text-center">#</th>
-                <th>Name</th>
-                <th>Url</th>
-                <th>Icon</th>
-                <th></th>
-              </tr>
-              </thead>
-              <tbody>
-               {loadList(dataDemo.items)}
-              </tbody>
-            </Table>
+          <Table bordered responsive size="sm" className="border-collapse">
+            <thead>
+            <tr>
+              <th className="text-center">#</th>
+              <th>Name</th>
+              <th>Url</th>
+              <th>Icon</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {this.loadList(dataDemo.items)}
+            </tbody>
+          </Table>
         </Row>
 
         {/* modal chỉnh sửa */}
