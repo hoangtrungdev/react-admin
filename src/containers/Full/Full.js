@@ -54,6 +54,7 @@ import Badges from '../../views/Notifications/Badges/';
 import Modals from '../../views/Notifications/Modals/';
 
 class Full extends Component {
+
   render() {
     return (
       <div className="app">

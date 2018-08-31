@@ -46,7 +46,7 @@ class CoverLetter extends Component {
       <div className="site-root">
         <header>
           <section className={`logo ${this.state.logoStyle}`}>
-            <NavLink to="/">Nguyễn Văn Khỏe</NavLink>
+            <NavLink to="/cover-letter">Trần Hoàng Trung</NavLink>
           </section>
           <div className={` main-nav-button ${this.state.buttonColor} `} onClick={this.navClick}>
             {this.state.buttonStyle}
@@ -55,13 +55,14 @@ class CoverLetter extends Component {
         <nav className={`nav-links ${this.state.navVis}`}>
           <ul>
             <li>
-              <NavLink to="/" onClick={this.navClick}>Kiếm 1000 tỷ</NavLink>
-            </li>
+            <NavLink to="/work" onClick={this.navClick}>Developer Javascript</NavLink>
+          </li>
             <li>
-              <NavLink to="/work" onClick={this.navClick}>Doanh nhân thành đạt</NavLink>
+              <NavLink to="/" onClick={this.navClick}>Web design</NavLink>
             </li>
+
             <li>
-              <NavLink to="/photo" onClick={this.navClick}> Photography</NavLink>
+              <NavLink to="/photo" onClick={this.navClick}> Photographer</NavLink>
             </li>
           </ul>
           <section className="social-section">
@@ -69,7 +70,7 @@ class CoverLetter extends Component {
             <a href="https://github.com/chrislindor" target="_blank" ><Fa iconClass="fa-github social-button" /></a>
             <a href="https://www.linkedin.com/in/chrislindor" target="_blank" ><Fa iconClass="fa-linkedin social-button" /></a>
             <section className="email">
-              <a href="#">khoecu@gmail.com</a>
+              <a href="#">hoangtrungdev@gmail.com</a>
             </section>
 
           </section>
@@ -89,7 +90,7 @@ class CoverLetter extends Component {
         </ReactCSSTransitionGroup>
         <footer>
           <p className="contact-info">
-            <a href="mailto:chrislindor@gmail.com">khoecu@gmail.com</a>
+            <a href="mailto:chrislindor@gmail.com">hoangtrungdev@gmail.com</a>
           </p>
           <p className="social-icons">
             <a href="https://www.instagram.com/ftm_chris/" target="_blank" ><Fa iconClass="fa-instagram" /></a>
@@ -98,7 +99,7 @@ class CoverLetter extends Component {
 
           </p>
           <p>
-            &copy; Khoe Cu 2018
+            &copy; Hoàng Trung 2018
           </p>
         </footer>
       </div>

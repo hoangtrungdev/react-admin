@@ -57,21 +57,22 @@ class Home extends React.Component {
 
             <section className={`home-ctrl`}>
 
-              <section  className={this.state.designBttn} onClick={
-                () => {
-                  this.updateCreative("home-design", "designBttn", "design");
-                }
-              }> Doanh nhân thành đạt </section>
               <section  className={this.state.devBttn} onClick={
                 () => {
                   this.updateCreative("home-dev", "devBttn", "dev");
                 }
-              }> Kiếm 100 tỷ 1 tháng </section>
+              }> Developer Javascript </section>
+              <section  className={this.state.designBttn} onClick={
+                () => {
+                  this.updateCreative("home-design", "designBttn", "design");
+                }
+              }> Web design </section>
+
               <section  className={this.state.photoBttn} onClick={
                 () => {
                   this.updateCreative("home-photo", "photoBttn", "photo");
                 }
-              }> Vòng xóa nợ </section>
+              }> Photographer </section>
 
             </section>
 
@@ -82,7 +83,7 @@ class Home extends React.Component {
           <section className="home-inner">
             <h1>About Me</h1>
             <p>
-              Hello! I’m Christopher Lindor a developer and designer who loves photography. I build and design responsive web applications and websites. <NavLink to="/work">See My work</NavLink>
+              Hello! I’m Trần Hoàng Trung a developer and designer who loves photography. I build and design responsive web applications and websites. <NavLink to="/work">See My work</NavLink>
             </p>
 
 
