@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {NavLink, Switch, Route, Redirect} from 'react-router-dom';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-import './CoverLetter.scss';
+import './Portfolio.scss';
 import Home from "./components/Home";
+import Project from "./components/Project";
 
 let Bars = <i className="fa fa-bars" aria-hidden="true"></i>;
 
@@ -12,7 +13,7 @@ let CloseIcon = <i className="fa fa-times" aria-hidden="true"></i>;
 const Fa = (props) => {
   return <i className={`fa ${props.iconClass}`} aria-hidden="true"></i>
 };
-class CoverLetter extends Component {
+class Portfolio extends Component {
   constructor(props) {
     super(props)
     this.navClick = this.navClick.bind(this)
@@ -46,7 +47,7 @@ class CoverLetter extends Component {
       <div className="site-root">
         <header>
           <section className={`logo ${this.state.logoStyle}`}>
-            <NavLink to="/cover-letter">Trần Hoàng Trung</NavLink>
+            <NavLink to="/portfolio">Trần Hoàng Trung</NavLink>
           </section>
           <div className={` main-nav-button ${this.state.buttonColor} `} onClick={this.navClick}>
             {this.state.buttonStyle}
@@ -55,14 +56,13 @@ class CoverLetter extends Component {
         <nav className={`nav-links ${this.state.navVis}`}>
           <ul>
             <li>
-            <NavLink to="/work" onClick={this.navClick}>Developer Javascript</NavLink>
-          </li>
-            <li>
-              <NavLink to="/" onClick={this.navClick}>Web design</NavLink>
+              <NavLink to="/portfolio/home" onClick={this.navClick}>Home</NavLink>
             </li>
-
             <li>
-              <NavLink to="/photo" onClick={this.navClick}> Photographer</NavLink>
+              <NavLink to="/portfolio/project" onClick={this.navClick}>Project</NavLink>
+            </li>
+            <li>
+              <NavLink to="/dashboard" onClick={this.navClick}>Dashboard</NavLink>
             </li>
           </ul>
           <section className="social-section">
@@ -84,8 +84,9 @@ class CoverLetter extends Component {
           transitionEnter={false}
           transitionLeave={false}>
           <Switch>
-            <Route path="/cover-letter" name="Home" component={Home}/>
-            <Redirect from="/cover-letter" to="/cover-letter/home"/>
+            <Route exact path="/portfolio/home" name="Home" component={Home}/>
+            <Route exact path="/portfolio/project" name="Project" component={Project}/>
+            <Redirect from="/portfolio" to="/portfolio/home"/>
           </Switch>
         </ReactCSSTransitionGroup>
         <footer>
@@ -107,4 +108,4 @@ class CoverLetter extends Component {
   }
 }
 
-export default CoverLetter;
+export default Portfolio;
