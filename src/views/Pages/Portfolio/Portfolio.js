@@ -66,9 +66,9 @@ class Portfolio extends Component {
             </li>
           </ul>
           <section className="social-section">
-            <a href="https://www.instagram.com/ftm_chris/" target="_blank" ><Fa iconClass="fa-instagram social-button" /></a>
-            <a href="https://github.com/chrislindor" target="_blank" ><Fa iconClass="fa-github social-button" /></a>
-            <a href="https://www.linkedin.com/in/chrislindor" target="_blank" ><Fa iconClass="fa-linkedin social-button" /></a>
+            <a href="https://www.instagram.com/trundev/" target="_blank" ><Fa iconClass="fa-instagram social-button" /></a>
+            <a href="https://github.com/hoangtrungdev" target="_blank" ><Fa iconClass="fa-github social-button" /></a>
+            <a href="https://www.linkedin.com/in/trungdev" target="_blank" ><Fa iconClass="fa-linkedin social-button" /></a>
             <section className="email">
               <a href="#">hoangtrungdev@gmail.com</a>
             </section>
@@ -94,9 +94,9 @@ class Portfolio extends Component {
             <a href="mailto:chrislindor@gmail.com">hoangtrungdev@gmail.com</a>
           </p>
           <p className="social-icons">
-            <a href="https://www.instagram.com/ftm_chris/" target="_blank" ><Fa iconClass="fa-instagram" /></a>
-            <a href="https://github.com/chrislindor" target="_blank" ><Fa iconClass="fa-github" /></a>
-            <a href="https://www.linkedin.com/in/chrislindor" target="_blank" ><Fa iconClass="fa-linkedin" /></a>
+            <a href="https://www.instagram.com/trungdev/" target="_blank" ><Fa iconClass="fa-instagram" /></a>
+            <a href="https://github.com/hoangtrungdev" target="_blank" ><Fa iconClass="fa-github" /></a>
+            <a href="https://www.linkedin.com/in/trungdev" target="_blank" ><Fa iconClass="fa-linkedin" /></a>
 
           </p>
           <p>

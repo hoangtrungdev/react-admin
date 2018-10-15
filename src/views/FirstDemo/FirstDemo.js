@@ -52,7 +52,6 @@ class FirstDemo extends Component {
 
   // load list data children
   loadListChildren(dataChildren){
-    console.log(dataChildren)
     return dataChildren.map( (item, index) => {
       return (
         <div key={index}>{item.url} -- <NavLink to={item.url} target="_blank">{item.name}</NavLink></div>
