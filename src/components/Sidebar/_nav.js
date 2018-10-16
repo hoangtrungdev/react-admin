@@ -26,6 +26,11 @@ export default {
         variant: 'info',
         text: 'image'
       }
+    },
+    {
+      name: 'English For Today',
+      url: '/eft',
+      icon: 'icon-puzzle'
     }
   ]
 };

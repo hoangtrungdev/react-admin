@@ -40,9 +40,9 @@ class Project extends React.Component {
         <section className="about">
           <section className="home-inner">
             <h1>English For Today</h1>
-            <p><input type="text"/></p>
-            <p><textarea className=""></textarea></p>
-            <p><button>asdads</button></p>
+            <div className="div__add-new"><input type="text" className="text__word" placeholder="New word" /></div>
+            <div className="div__add-new"><textarea className="textarea__note" placeholder="Note"></textarea></div>
+            <div className="div__add-new"><button className="button__add">Add word</button></div>
             <p>New word</p>
             <section className='skill-section'>
               <ul className='skills-list'>

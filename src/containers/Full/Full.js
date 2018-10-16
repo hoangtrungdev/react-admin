@@ -9,6 +9,7 @@ import Footer from '../../components/Footer/';
 
 import Dashboard from '../../views/Dashboard/';
 import FirstDemo from '../../views/FirstDemo/';
+import EFT from '../../views/EFT/';
 import SlickDemo from '../../views/SlickDemo/';
 import GalleryDemo from '../../views/GalleryDemo/';
 
@@ -67,6 +68,7 @@ class Full extends Component {
               <Switch>
                 <Route path="/dashboard" name="Dashboard" component={Dashboard}/>
                 <Route path="/first-demo" name="FirstDemo" component={FirstDemo}/>
+                <Route path="/eft" name="FirstDemo" component={EFT}/>
                 <Route path="/slick-demo" name="SlickDemo" component={SlickDemo}/>
                 <Route path="/gallery-demo" name="GalleryDemo" component={GalleryDemo}/>
                 <Route path="/theme/colors" name="Colors" component={Colors}/>
