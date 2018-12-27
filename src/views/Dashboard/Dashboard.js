@@ -408,7 +408,7 @@ const mainChartOpts = {
       hoverBorderWidth: 3,
     }
   }
-}
+};
 
 
 class Dashboard extends Component {

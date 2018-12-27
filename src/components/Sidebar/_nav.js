@@ -24,13 +24,17 @@ export default {
       icon: 'icon-puzzle',
       badge: {
         variant: 'info',
-        text: 'image'
+        text: 'Image'
       }
     },
     {
-      name: 'English For Today',
-      url: '/eft',
-      icon: 'icon-puzzle'
+      name: 'Map Demo',
+      url: '/map-demo',
+      icon: 'icon-map',
+      badge: {
+        variant: 'info',
+        text: 'Map'
+      }
     }
   ]
 };

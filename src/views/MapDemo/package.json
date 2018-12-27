@@ -1,0 +1,6 @@
+{
+  "name": "MapDemo",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./MapDemo.js"
+}

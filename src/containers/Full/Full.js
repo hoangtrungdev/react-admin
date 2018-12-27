@@ -12,6 +12,7 @@ import FirstDemo from '../../views/FirstDemo/';
 import EFT from '../../views/EFT/';
 import SlickDemo from '../../views/SlickDemo/';
 import GalleryDemo from '../../views/GalleryDemo/';
+import MapDemo from '../../views/MapDemo/';
 
 import Colors from '../../views/Theme/Colors/';
 import Typography from '../../views/Theme/Typography/';
@@ -71,6 +72,7 @@ class Full extends Component {
                 <Route path="/eft" name="FirstDemo" component={EFT}/>
                 <Route path="/slick-demo" name="SlickDemo" component={SlickDemo}/>
                 <Route path="/gallery-demo" name="GalleryDemo" component={GalleryDemo}/>
+                <Route path="/map-demo" name="MapDemo" component={MapDemo}/>
                 <Route path="/theme/colors" name="Colors" component={Colors}/>
                 <Route path="/theme/typography" name="Typography" component={Typography}/>
                 <Route path="/base/cards" name="Cards" component={Cards}/>

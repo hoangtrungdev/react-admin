@@ -4,7 +4,6 @@ import Gallery from 'react-photo-gallery';
 import Lightbox from 'react-images';
 
 const photos = [
-  { src: 'https://lh3.googleusercontent.com/-wkojFkD3vqg/AAAAAAAAAAI/AAAAAAAAAHA/d_lkfdMp-4k/s600-c-k-no/photo.jpg', width: 1, height: 1 },
   { src: 'https://source.unsplash.com/Dm-qxdynoEc/800x799', width: 1, height: 1 },
   { src: 'https://source.unsplash.com/qDkso9nvCg0/600x799', width: 3, height: 4 },
   { src: 'https://source.unsplash.com/iecJiKe_RNg/600x799', width: 3, height: 4 },
