@@ -2,5 +2,5 @@
   "name": "Product",
   "version": "0.0.0",
   "private": true,
-  "main": "./Product.js"
+  "main": "./List/"
 }

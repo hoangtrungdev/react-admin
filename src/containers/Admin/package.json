@@ -1,6 +1,6 @@
 {
-  "name": "Full",
+  "name": "Admin",
   "version": "0.0.0",
   "private": true,
-  "main": "./Full.js"
+  "main": "./Admin.js"
 }

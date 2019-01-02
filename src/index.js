@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {HashRouter, Route, Switch} from 'react-router-dom';
+import {HashRouter, Route, Switch, Redirect} from 'react-router-dom';
 
 // Styles
 // Import Flag Icons Set
@@ -15,7 +15,7 @@ import '../scss/style.scss'
 import '../scss/core/_dropdown-menu-right.scss'
 
 // Containers
-import Full from './containers/Full/'
+import Admin from './containers/Admin/'
 
 // Views
 import Login from './views/Pages/Login/'
@@ -34,7 +34,8 @@ ReactDOM.render((
       <Route exact path="/404" name="Page 404" component={Page404}/>
       <Route exact path="/500" name="Page 500" component={Page500}/>
       <Route path="/portfolio" name="Cover Letter" component={Portfolio}/>
-      <Route path="/" name="Home" component={Full}/>
+      <Route path="/admin" name="Admin" component={Admin}/>
+      <Redirect from="/" to="/portfolio"/>
 
     </Switch>
   </HashRouter>

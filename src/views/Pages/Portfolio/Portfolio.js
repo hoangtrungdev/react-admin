@@ -62,7 +62,7 @@ class Portfolio extends Component {
               <NavLink to="/portfolio/project" onClick={this.navClick}>Project</NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard" onClick={this.navClick}>Dashboard</NavLink>
+              <NavLink to="/admin" onClick={this.navClick}>Dashboard</NavLink>
             </li>
           </ul>
           <section className="social-section">
