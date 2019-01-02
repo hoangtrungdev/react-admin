@@ -15,7 +15,9 @@ class Project extends React.Component {
     //   word : 'aaaaaaab',
     //   note : 'bbbbbbbb'
     // });
-    database.ref("EnglishToDay").on('value', (snapshot) => {
+    database.ref("products").on('value', (snapshot) => {
+      console.log(snapshotToArray(snapshot))
+
       this.setState({
         newWord: snapshotToArray(snapshot)
       });

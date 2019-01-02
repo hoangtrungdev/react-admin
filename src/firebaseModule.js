@@ -2,12 +2,12 @@ import firebase from 'firebase/app';
 import 'firebase/database';
 
 const config = {
-  apiKey: "AIzaSyCoXB4qBnPD5HOx3hTBQX1g28s4flhUUnY",
-  authDomain: "hoangtrungdev-abcd.firebaseapp.com",
-  databaseURL: "https://hoangtrungdev-abcd.firebaseio.com",
-  projectId: "hoangtrungdev-abcd",
-  storageBucket: "hoangtrungdev-abcd.appspot.com",
-  messagingSenderId: "49361903745"
+  apiKey: "AIzaSyDGUYSLmWfXhgV5xS1wXx9oc--REhbRJfg",
+  authDomain: "halley-hoangtrungdev.firebaseapp.com",
+  databaseURL: "https://halley-hoangtrungdev.firebaseio.com",
+  projectId: "halley-hoangtrungdev",
+  storageBucket: "halley-hoangtrungdev.appspot.com",
+  messagingSenderId: "716358595273"
 };
 firebase.initializeApp(config);
 

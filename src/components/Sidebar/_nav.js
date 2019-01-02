@@ -28,12 +28,12 @@ export default {
       }
     },
     {
-      name: 'Map Demo',
-      url: '/map-demo',
+      name: 'Product',
+      url: '/product',
       icon: 'icon-map',
       badge: {
         variant: 'info',
-        text: 'Map'
+        text: 'Product'
       }
     }
   ]
