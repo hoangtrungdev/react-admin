@@ -1,28 +1,36 @@
 import React, { Component } from 'react';
 import { database, snapshotToArray } from "../../../../firebaseModule";
+import ModalDetail from "./components/ModalDetail";
 
 
 import {
-  Row,
-  Button,
+  Row, Button, Table,
   Modal, ModalHeader, ModalBody, ModalFooter,
-  Table
+  Col, Form, FormGroup, Label, Input, FormText
 } from 'reactstrap';
 
 
-class EFT extends Component {
+class ProductList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       modalEdit: false ,
+      currentItem : {},
       arrayProduct : props.arrayProduct || []
     };
     this.toggleModalEdit = this.toggleModalEdit.bind(this);
+    this.setCurrentItem = this.setCurrentItem.bind(this);
 
 
   }
   componentDidMount() {
     this.subscribeToFirebase();
+  }
+  // sự kiện hiện , tắt modal edit
+  toggleModalEdit() {
+    this.setState({
+      modalEdit: !this.state.modalEdit
+    });
   }
 
   subscribeToFirebase() {
@@ -41,10 +49,15 @@ class EFT extends Component {
       modalEdit: !this.state.modalEdit
     });
   }
+  // sự kiện hiện , tắt modal edit
+  setCurrentItem(item) {
+    this.setState({
+      currentItem: item
+    });
+  }
   // render từng dòng
   loadList(array){
     return array.map( (item, index) => {
-      console.log(item)
       return (
         <tr key={index}>
           <td className="text-center">{index + 1}</td>
@@ -55,8 +68,8 @@ class EFT extends Component {
           <td className="text-center">{item.price}</td>
           <td className="text-center">{item.sale_price}</td>
           <td className="text-center">
-            <Button color="primary" size="sm"  onClick={this.toggleModalEdit}><i className="	icon-wrench"></i></Button>
-            <Button color="danger" size="sm"><i className="	icon-trash"></i></Button>
+            <Button color="primary" size="sm" onClick={ () => { this.setCurrentItem(item); this.toggleModalEdit() } } title="Chỉnh sửa"><i className="	icon-wrench"></i></Button>
+            <Button color="danger" size="sm"  title="Xóa"><i className="	icon-trash" ></i></Button>
           </td>
         </tr>
       );
@@ -91,19 +104,13 @@ class EFT extends Component {
           </Table>
         </Row>
 
-        {/* modal chỉnh sửa */}
-        <Modal isOpen={this.state.modalEdit} toggle={this.toggleModalEdit} className={'modal-lg'}>
-          <ModalHeader toggle={this.toggleModalEdit}>Thông Tin Chi Tiết</ModalHeader>
-          <ModalBody>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.toggleModalEdit}>Xác nhận</Button>
-            <Button color="secondary" onClick={this.toggleModalEdit}>Thoát</Button>
-          </ModalFooter>
-        </Modal>
+       <ModalDetail
+         toggleModalEdit = {this.toggleModalEdit}
+         modalEdit = {this.state.modalEdit}
+         currentItem = {this.state.currentItem}
+       />
       </div>
     )
   }
 }
-export default EFT;
+export default ProductList;
