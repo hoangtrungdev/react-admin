@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { database, snapshotToArray } from "../../../../firebaseModule";
+import { database, snapshotToArray } from "../../../../firebaseModule.js";
 import ModalDetail from "./components/ModalDetail";
 
 

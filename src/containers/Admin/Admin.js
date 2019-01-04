@@ -11,6 +11,7 @@ import Dashboard from '../../views/Admin/Dashboard/';
 import FirstDemo from '../../views/Admin/FirstDemo/';
 import ProductList from '../../views/Admin/Product/List/';
 
+
 class Full extends Component {
 
   render() {

@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { database } from "../../../../../../firebaseModule.js";
+
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css'
 
 
 import { Button,
   Modal, ModalHeader, ModalBody, ModalFooter,
-  Col, Form, FormGroup, Label, Input, FormText
+  Col, Form, FormGroup, Label, Input
 } from 'reactstrap';
 
 
@@ -13,15 +17,34 @@ class ModalDetail extends Component {
     this.state = {
       detailInfo : {}
     };
-    this.updateDetail = this.updateDetail.bind(this)
+    toastr.options = {
+      hideDuration: 300,
+      timeOut: 5000
+    };
+    this.handleChangeDetailInfo = this.handleChangeDetailInfo.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
 
   componentWillReceiveProps(nextProps) {
-      this.setState({ detailInfo: nextProps.currentItem });
+    let detailInfo = JSON.parse(JSON.stringify(nextProps.currentItem));
+    this.setState({ detailInfo: detailInfo });
   }
 
-  updateDetail() {
-    console.log('aaaa', this.state.detailInfo);
+  handleChangeDetailInfo(key) {
+    return (event) => {
+      this.state.detailInfo[key] = event.target.value;
+      this.setState({detailInfo: this.state.detailInfo});
+    }
+  }
+  handleSubmit() {
+    database.ref('products/' + this.state.detailInfo.key).set(this.state.detailInfo, (error) => {
+      if (error) {
+      } else {
+        toastr.success(`Cập nhật thành công !`, 'Thông Báo !');
+        this.props.toggleModalEdit();
+      }
+    });
   }
 
   render() {
@@ -35,26 +58,38 @@ class ModalDetail extends Component {
               <FormGroup row>
                 <Label className="control-label" sm={2}>name</Label>
                 <Col sm={10}>
-                  <Input type="text" placeholder="Name"  defaultValue={this.state.detailInfo.name} />
+                  <Input type="text" placeholder="Name"  value={this.state.detailInfo.name} onChange={this.handleChangeDetailInfo('name')} />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label className="control-label" sm={2}>color</Label>
                 <Col sm={10}>
-                  <Input type="text" placeholder="color" defaultValue={this.state.detailInfo.color}  />
+                  <Input type="text" placeholder="color" value={this.state.detailInfo.color}  onChange={this.handleChangeDetailInfo('color')} />
                 </Col>
               </FormGroup>
               <FormGroup row>
-                <Label className="control-label" sm={2}>brand</Label>
+                <Label className="control-label" sm={2}>inprice</Label>
                 <Col sm={10}>
-                  <Input type="text" placeholder="brand" defaultValue={this.state.detailInfo.brand}   />
+                  <Input type="text" placeholder="brand"  value={this.state.detailInfo.inprice}  onChange={this.handleChangeDetailInfo('inprice')} />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label className="control-label" sm={2}>price</Label>
+                <Col sm={10}>
+                  <Input type="text" placeholder="brand"  value={this.state.detailInfo.price}  onChange={this.handleChangeDetailInfo('price')} />
+                </Col>
+              </FormGroup>
+              <FormGroup row>
+                <Label className="control-label" sm={2}>sale_price</Label>
+                <Col sm={10}>
+                  <Input type="text" placeholder="brand"  value={this.state.detailInfo.sale_price}  onChange={this.handleChangeDetailInfo('sale_price')} />
                 </Col>
               </FormGroup>
             </Form>
 
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.updateDetail}>Xác nhận</Button>
+            <Button color="primary" onClick={this.handleSubmit}>Xác nhận</Button>
             <Button color="secondary" onClick={this.props.toggleModalEdit}>Thoát</Button>
           </ModalFooter>
         </Modal>
