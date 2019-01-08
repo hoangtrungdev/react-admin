@@ -37,6 +37,7 @@
     "flag-icon-css": "2.9.0",
     "font-awesome": "4.7.0",
     "history": "4.7.2",
+    "numeral": "^2.0.6",
     "react": "^16.4.2",
     "react-addons-css-transition-group": "^15.6.2",
     "react-chartjs-2": "2.7.0",

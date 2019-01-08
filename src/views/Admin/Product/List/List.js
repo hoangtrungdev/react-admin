@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { database, snapshotToArray } from "../../../../firebaseModule.js";
 import ModalDetail from "./components/ModalDetail";
+import numeral from 'numeral';
+
 
 
 import {
-  Row, Button, Table,
-  Modal, ModalHeader, ModalBody, ModalFooter,
-  Col, Form, FormGroup, Label, Input, FormText
+  Row, Button, Table
 } from 'reactstrap';
 
 
@@ -16,7 +16,7 @@ class ProductList extends Component {
     this.state = {
       modalEdit: false ,
       currentItem : {},
-      arrayProduct : props.arrayProduct || []
+      arrayProduct : []
     };
     this.toggleModalEdit = this.toggleModalEdit.bind(this);
     this.setCurrentItem = this.setCurrentItem.bind(this);
@@ -24,21 +24,19 @@ class ProductList extends Component {
 
   }
   componentDidMount() {
-    this.subscribeToFirebase();
+    database.ref("products").on('value', (snapshot) => {
+      console.log('aaaaa')
+      this.setState({
+        arrayProduct: snapshotToArray(snapshot)
+      });
+    });
   }
+
+
   // sự kiện hiện , tắt modal edit
   toggleModalEdit() {
     this.setState({
       modalEdit: !this.state.modalEdit
-    });
-  }
-
-  subscribeToFirebase() {
-    // load data  from firebase
-    database.ref("products").on('value', (snapshot) => {
-      this.setState({
-        arrayProduct: snapshotToArray(snapshot)
-      });
     });
   }
 
@@ -64,9 +62,9 @@ class ProductList extends Component {
           <td>{item.name}</td>
           <td>{item.brand}</td>
           <td>{item.color}</td>
-          <td className="text-center">{item.inprice}</td>
-          <td className="text-center">{item.price}</td>
-          <td className="text-center">{item.sale_price}</td>
+          <td className="text-center">{numeral(item.inprice).format('0,0')}</td>
+          <td className="text-center">{numeral(item.price).format('0,0')}</td>
+          <td className="text-center">{numeral(item.sale_price).format('0,0')}</td>
           <td className="text-center">
             <Button color="primary" size="sm" onClick={ () => { this.setCurrentItem(item); this.toggleModalEdit() } } title="Chỉnh sửa"><i className="	icon-wrench"></i></Button>
             <Button color="danger" size="sm"  title="Xóa"><i className="	icon-trash" ></i></Button>
@@ -107,7 +105,7 @@ class ProductList extends Component {
        <ModalDetail
          toggleModalEdit = {this.toggleModalEdit}
          modalEdit = {this.state.modalEdit}
-         currentItem = {this.state.currentItem}
+         currentItem = {JSON.parse(JSON.stringify(this.state.currentItem))}
        />
       </div>
     )

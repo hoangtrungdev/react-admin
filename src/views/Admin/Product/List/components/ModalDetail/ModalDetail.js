@@ -4,6 +4,7 @@ import { database } from "../../../../../../firebaseModule.js";
 import toastr from 'toastr'
 import 'toastr/build/toastr.min.css'
 
+import numeral from 'numeral';
 
 import { Button,
   Modal, ModalHeader, ModalBody, ModalFooter,
@@ -33,7 +34,11 @@ class ModalDetail extends Component {
 
   handleChangeDetailInfo(key) {
     return (event) => {
-      this.state.detailInfo[key] = event.target.value;
+      if(['inprice', 'price', 'sale_price'].includes( key )){
+        this.state.detailInfo[key] = event.target.value.replace(new RegExp(',', 'g'), '');
+      } else {
+        this.state.detailInfo[key] = event.target.value;
+      }
       this.setState({detailInfo: this.state.detailInfo});
     }
   }
@@ -70,7 +75,7 @@ class ModalDetail extends Component {
               <FormGroup row>
                 <Label className="control-label" sm={2}>inprice</Label>
                 <Col sm={10}>
-                  <Input type="text" placeholder="brand"  value={this.state.detailInfo.inprice}  onChange={this.handleChangeDetailInfo('inprice')} />
+                  <Input type="text" placeholder="brand"  value={numeral(this.state.detailInfo.inprice).format('0,0')}  onChange={this.handleChangeDetailInfo('inprice')} />
                 </Col>
               </FormGroup>
               <FormGroup row>
