@@ -27,29 +27,31 @@ class ModalDetail extends Component {
   }
 
 
-  componentWillReceiveProps(nextProps) {
-    let detailInfo = JSON.parse(JSON.stringify(nextProps.currentItem));
-    this.setState({ detailInfo: detailInfo });
-  }
+
 
   handleChangeDetailInfo(key) {
     return (event) => {
+      let value = event.target.value;
       if(['inprice', 'price', 'sale_price'].includes( key )){
-        this.state.detailInfo[key] = event.target.value.replace(new RegExp(',', 'g'), '');
+        let valueFormat = value.replace(new RegExp(',', 'g'), '');
+        this.state.detailInfo[key] = valueFormat;
+        event.target.value = numeral(valueFormat).format('0,0');
       } else {
-        this.state.detailInfo[key] = event.target.value;
+        this.state.detailInfo[key] = value;
       }
       this.setState({detailInfo: this.state.detailInfo});
     }
   }
   handleSubmit() {
-    database.ref('products/' + this.state.detailInfo.key).set(this.state.detailInfo, (error) => {
-      if (error) {
-      } else {
-        toastr.success(`Cập nhật thành công !`, 'Thông Báo !');
-        this.props.toggleModalEdit();
-      }
-    });
+      database.ref('products/' + this.props.currentItem.key).update(this.state.detailInfo, (error) => {
+        if (error) {
+          toastr.error(`Cập nhật không thành công !`, 'Thông Báo !');
+        } else {
+          this.props.toggleModalEdit();
+          toastr.success(`Cập nhật thành công !`, 'Thông Báo !');
+        }
+      })
+
   }
 
   render() {
@@ -63,31 +65,31 @@ class ModalDetail extends Component {
               <FormGroup row>
                 <Label className="control-label" sm={2}>name</Label>
                 <Col sm={10}>
-                  <Input type="text" placeholder="Name"  value={this.state.detailInfo.name} onChange={this.handleChangeDetailInfo('name')} />
+                  <Input type="text" placeholder="Name"  defaultValue={this.props.currentItem.name} onChange={this.handleChangeDetailInfo('name')} />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label className="control-label" sm={2}>color</Label>
                 <Col sm={10}>
-                  <Input type="text" placeholder="color" value={this.state.detailInfo.color}  onChange={this.handleChangeDetailInfo('color')} />
+                  <Input type="text" placeholder="color" defaultValue={this.props.currentItem.color}  onChange={this.handleChangeDetailInfo('color')} />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label className="control-label" sm={2}>inprice</Label>
                 <Col sm={10}>
-                  <Input type="text" placeholder="brand"  value={numeral(this.state.detailInfo.inprice).format('0,0')}  onChange={this.handleChangeDetailInfo('inprice')} />
+                  <Input type="text" placeholder="brand"  defaultValue={numeral(this.props.currentItem.inprice).format('0,0')} onChange={this.handleChangeDetailInfo('inprice')} />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label className="control-label" sm={2}>price</Label>
                 <Col sm={10}>
-                  <Input type="text" placeholder="brand"  value={this.state.detailInfo.price}  onChange={this.handleChangeDetailInfo('price')} />
+                  <Input type="text" placeholder="brand"  defaultValue={numeral(this.props.currentItem.price).format('0,0')}  onChange={this.handleChangeDetailInfo('price')} />
                 </Col>
               </FormGroup>
               <FormGroup row>
                 <Label className="control-label" sm={2}>sale_price</Label>
                 <Col sm={10}>
-                  <Input type="text" placeholder="brand"  value={this.state.detailInfo.sale_price}  onChange={this.handleChangeDetailInfo('sale_price')} />
+                  <Input type="text" placeholder="brand"  defaultValue={numeral(this.props.currentItem.sale_price).format('0,0')}  onChange={this.handleChangeDetailInfo('sale_price')} />
                 </Col>
               </FormGroup>
             </Form>

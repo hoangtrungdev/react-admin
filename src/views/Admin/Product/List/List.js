@@ -3,11 +3,13 @@ import { database, snapshotToArray } from "../../../../firebaseModule.js";
 import ModalDetail from "./components/ModalDetail";
 import numeral from 'numeral';
 
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
+import toastr from 'toastr'
+import 'toastr/build/toastr.min.css'
 
-import {
-  Row, Button, Table
-} from 'reactstrap';
+import { Row, Button, Table } from 'reactstrap';
 
 
 class ProductList extends Component {
@@ -20,24 +22,20 @@ class ProductList extends Component {
     };
     this.toggleModalEdit = this.toggleModalEdit.bind(this);
     this.setCurrentItem = this.setCurrentItem.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
 
 
   }
   componentDidMount() {
     database.ref("products").on('value', (snapshot) => {
-      console.log('aaaaa')
       this.setState({
         arrayProduct: snapshotToArray(snapshot)
       });
     });
   }
 
-
-  // sự kiện hiện , tắt modal edit
-  toggleModalEdit() {
-    this.setState({
-      modalEdit: !this.state.modalEdit
-    });
+  componentWillUnmount() {
+    database.ref("products").off('value');
   }
 
 
@@ -50,9 +48,31 @@ class ProductList extends Component {
   // sự kiện hiện , tắt modal edit
   setCurrentItem(item) {
     this.setState({
-      currentItem: item
+      currentItem: JSON.parse(JSON.stringify(item))
     });
   }
+  deleteItem(item){
+    confirmAlert({
+      title: 'Xác nhận xóa !!!!',
+      message: 'Bạn thực sự muốn xóa thông tin này .',
+      buttons: [
+        {
+          label: 'Có',
+          onClick: () => database.ref('products/' + item.key).remove( (error) => {
+            if (error) {
+              toastr.error(`Xóa không thành công !`, 'Thông Báo !');
+            } else {
+              toastr.success(`Xóa thành công !`, 'Thông Báo !');
+            }
+          })
+        },
+        {
+          label: 'Không'
+        }
+      ]
+    })
+  }
+
   // render từng dòng
   loadList(array){
     return array.map( (item, index) => {
@@ -60,14 +80,13 @@ class ProductList extends Component {
         <tr key={index}>
           <td className="text-center">{index + 1}</td>
           <td>{item.name}</td>
-          <td>{item.brand}</td>
           <td>{item.color}</td>
           <td className="text-center">{numeral(item.inprice).format('0,0')}</td>
           <td className="text-center">{numeral(item.price).format('0,0')}</td>
           <td className="text-center">{numeral(item.sale_price).format('0,0')}</td>
           <td className="text-center">
             <Button color="primary" size="sm" onClick={ () => { this.setCurrentItem(item); this.toggleModalEdit() } } title="Chỉnh sửa"><i className="	icon-wrench"></i></Button>
-            <Button color="danger" size="sm"  title="Xóa"><i className="	icon-trash" ></i></Button>
+            <Button color="danger" size="sm" onClick={ this.deleteItem.bind(this, item) } title="Xóa"><i className="	icon-trash" ></i></Button>
           </td>
         </tr>
       );
@@ -88,7 +107,6 @@ class ProductList extends Component {
             <tr>
               <th className="text-center">#</th>
               <th>Name</th>
-              <th>Brand</th>
               <th>Color</th>
               <th className="text-center">Inprice</th>
               <th className="text-center">Price</th>
@@ -102,11 +120,11 @@ class ProductList extends Component {
           </Table>
         </Row>
 
-       <ModalDetail
-         toggleModalEdit = {this.toggleModalEdit}
-         modalEdit = {this.state.modalEdit}
-         currentItem = {JSON.parse(JSON.stringify(this.state.currentItem))}
-       />
+        <ModalDetail
+          toggleModalEdit = {this.toggleModalEdit}
+          modalEdit = {this.state.modalEdit}
+          currentItem = {this.state.currentItem}
+        />
       </div>
     )
   }
