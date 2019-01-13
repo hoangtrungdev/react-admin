@@ -4,7 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 import './Portfolio.scss';
 import Home from "./components/Home";
-import Project from "./components/Project";
+import PageProduct from "./components/PageProduct";
 
 let Bars = <i className="fa fa-bars" aria-hidden="true"></i>;
 
@@ -59,7 +59,7 @@ class Portfolio extends Component {
               <NavLink to="/portfolio/home" onClick={this.navClick}>Home</NavLink>
             </li>
             <li>
-              <NavLink to="/portfolio/project" onClick={this.navClick}>Project</NavLink>
+              <NavLink to="/portfolio/product" onClick={this.navClick}>Products</NavLink>
             </li>
             <li>
               <NavLink to="/admin" onClick={this.navClick}>Dashboard</NavLink>
@@ -85,7 +85,7 @@ class Portfolio extends Component {
           transitionLeave={false}>
           <Switch>
             <Route exact path="/portfolio/home" name="Home" component={Home}/>
-            <Route exact path="/portfolio/project" name="Project" component={Project}/>
+            <Route exact path="/portfolio/product" name="PageProduct" component={PageProduct}/>
             <Redirect from="/portfolio" to="/portfolio/home"/>
           </Switch>
         </ReactCSSTransitionGroup>

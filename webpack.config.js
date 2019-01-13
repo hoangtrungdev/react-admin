@@ -90,6 +90,11 @@ module.exports = (env = {}) => {
           }
         }]
     },
+    resolve : {
+      alias: {
+        _src: path.resolve(__dirname, 'src/')
+      }
+    },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
       new webpack.optimize.UglifyJsPlugin({sourceMap: true}),

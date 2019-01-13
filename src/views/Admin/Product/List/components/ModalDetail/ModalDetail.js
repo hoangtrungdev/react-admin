@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { database } from "../../../../../../firebaseModule.js";
+import { database } from "_src/firebaseModule.js";
 
 import toastr from 'toastr'
 import 'toastr/build/toastr.min.css'
